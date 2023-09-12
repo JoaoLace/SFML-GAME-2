@@ -5,6 +5,7 @@ void Game::initWindow()
 {
 	videoMode = sf::VideoMode(800,600);
 	window = new sf::RenderWindow(videoMode, "Game 2",sf::Style::Close | sf::Style::Titlebar);
+	window->setFramerateLimit(60);
 }
 
 void Game::initVariables()
@@ -26,7 +27,7 @@ Game::~Game()
 void Game::update()
 {
 	pollEvents();
-
+	player.update(window);
 }
 void Game::render()
 {

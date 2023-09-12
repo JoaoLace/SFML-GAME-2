@@ -12,10 +12,14 @@ private:
 	void initVariables();
 	void initShape();
 public:
-	Player();
-	virtual ~Player();
 
-	void update();
+	// in game vars
+	float speedMove;
+	Player(float x = 0, float y = 0);
+	virtual ~Player();
+	void updateInput();
+	void updateWindowBounce(const sf::RenderTarget* target);
+	void update(const sf::RenderTarget* target);
 	void render(sf::RenderTarget* target);
 };
 
