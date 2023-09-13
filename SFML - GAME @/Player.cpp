@@ -2,7 +2,13 @@
 
 void Player::initVariables()
 {
-	speedMove = 10.f;
+	// maxScale = 1.5f;
+	// yScale = 1.f;
+	// xScale = 1.f;
+	
+	speedMove = 7.f;
+	hpMax = 10;
+	hp = hpMax;
 }
 
 void Player::initShape()
@@ -21,6 +27,55 @@ Player::Player(float x, float y)
 
 Player::~Player()
 {
+}
+
+// acessors
+const sf::RectangleShape & Player::getShape() const
+{
+	return shape;
+}
+
+const int& Player::getHp() const
+{
+	return hp;
+}
+
+const int& Player::getHpMax() const
+{
+	return hpMax;
+}
+
+/*
+	Just a quick test 
+
+void Player::gainPoints()
+{
+	xScale += 0.1f;
+	yScale += 0.1f;
+	if (xScale > maxScale)
+	{
+		xScale = maxScale;
+		yScale = maxScale;
+	}
+	points++;
+	shape.setScale( xScale, yScale);
+}
+*/
+
+void Player::takeDamage(const int damage)
+{
+	if (hp > 0)
+		hp -= damage;
+	if (hp < 0)
+		hp = 0;
+}
+
+void Player::getHealth(const int health)
+{
+	if (hp < hpMax)
+		hp += health;
+	if (hp > hpMax)
+		hp = hpMax;
 }
 
 void Player::updateInput()

@@ -1,8 +1,10 @@
 #pragma once
 #include "Player.h"
+#include "Balls.h"
 #include <iostream>
 #include <ctime>
-
+#include <vector>
+#include <sstream>
 
 class Game
 {
@@ -14,6 +16,18 @@ private:
 
 	Player player;
 
+	std::vector <Balls> BallsVector;
+	float spawTimerMax;
+	float spawnTimer;
+	int maxBalls;
+
+	int points;
+	sf::Font font;
+	sf::Text text;
+	sf::Text endText;
+	void initFont();
+	void initText();
+
 	void initWindow();
 	void initVariables();
 public:
@@ -22,14 +36,23 @@ public:
 	~Game();
 
 	// Accessors
-
+	const bool& getEndGame() const;
 	// Modifiers
 
 	// Funcs
 	const bool running() const;
 
+	const int randomizeType() const;
+	void spawBalls();
+	void updatePlayer();
+	void updateCollision();
+	
 	void pollEvents();
+
+	void updateText();
 	void update();
+
+	void renderText(sf::RenderTarget* target);
 	void render();
 };
 
